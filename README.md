@@ -21,9 +21,17 @@
 
 卡片为纯 SVG 矢量渲染（零依赖），HTML 版点一下按钮就能存 2x 高清 PNG，直接发社交平台。
 
-### 🍟 团餐规划（第二玩法）
+## 其实是五合一全家桶
 
-说「帮我配一桌麦当劳」：给 **人数 + 预算 + 忌口 + 位置**，技能会查附近门店 → 拉真实菜单 → AI 按官方搭配建议配餐 → **calculate-price 真实试算**，输出每人一份的明细表和全桌购物车。只规划不下单。
+| 玩法 | 一句话 | 命令入口 |
+|---|---|---|
+| 🪪 麦门工牌 | 真实订单/积分 → 程序员工牌卡片 | `collect-stats.mjs` + `make-badge.mjs` |
+| 🍟 麦门团餐规划 | 人数+预算+忌口 → 配餐+真实试算 | `plan-feast.mjs stores/menu/price` |
+| 🎂 麦麦派对策划师 | 生日派对/品鉴会的城市→门店→场次 | `mcd-extras.mjs party-*` |
+| ⏰ 积分过期军师 | 快过期积分 → 最优兑换建议 | `mcd-extras.mjs points / mall` |
+| 📡 麦门情报站 | 活动日历 + 可领券清单 | `mcd-extras.mjs intel` |
+
+团餐示例（其余玩法见 SKILL.md，全部只读、不下单）：
 
 ```bash
 node scripts/plan-feast.mjs stores --city 上海 --keyword 龙阳路 --beType 1 --searchType 2
@@ -36,7 +44,8 @@ node scripts/plan-feast.mjs price --storeCode 1450105 --orderType 1 --beType 1 \
 
 - 麦门信徒：想拥有一张"官方盖章"级别的干饭身份凭证
 - 打工人 / 学生：程序员节朋友圈晒图素材，晒的是自己真实吃出来的 KPI
-- 组织聚餐的干饭头子：团建、社团、班级聚会，报人数和预算就出方案
+- 组织聚餐/派对的干饭头子：团建、社团、生日会，报人数和预算就出方案
+- 精打细算的积分玩家：过期预警 + 兑换建议，一分都不浪费
 - Skill 开发者：想学**零依赖接入 Streamable HTTP MCP** 的，本仓库 scripts/ 就是现成参考实现（无任何 SDK）
 
 ## 快速开始
@@ -45,9 +54,9 @@ node scripts/plan-feast.mjs price --storeCode 1450105 --orderType 1 --beType 1 \
 
 1. 把本仓库克隆到本地，将整个文件夹复制到 WorkBuddy 技能目录（或按 WorkBuddy 技能安装方式导入）
 2. 准备 Token（见下方「Token 申请」），写入项目根目录 `.token.local` 文件
-3. 对 WorkBuddy 说：**「给我生成麦门工牌」** 或 **「帮我配一桌麦当劳团餐，6 个人人均 35」**
+3. 对 WorkBuddy 说：**「给我生成麦门工牌」** / **「帮我配一桌麦当劳团餐，6 个人人均 35」** / **「帮我策划一场生日派对」** / **「我积分快过期了」** / **「麦当劳最近有什么活动」**
 
-WorkBuddy 会自动：拉数据 → 算职位/KPI → AI 写年度鉴定 → 渲染卡片 → 给你存图入口；团餐则查店→配餐→试算出方案。
+五个玩法对应五个工作流，全部只读、不下单，详见 SKILL.md。
 
 ### 方式二：手动运行（Node ≥ 18，零 npm 依赖）
 
@@ -96,7 +105,8 @@ mcd-badge/
 │   ├── mcd.mjs               # CLI：ping / tools / call <tool> <args>
 │   ├── collect-stats.mjs     # 拉取订单+积分 → 计算职位/部门/技能/KPI → stats.json
 │   ├── make-badge.mjs        # stats.json → 工牌 SVG + HTML（可存 PNG）
-│   └── plan-feast.mjs        # 团餐规划管道：查店 / 拉菜单 / 试算（不下单）
+│   ├── plan-feast.mjs        # 团餐规划管道：查店 / 拉菜单 / 试算（不下单）
+│   └── mcd-extras.mjs        # 派对策划 / 积分军师 / 情报站 管道（全部只读）
 ├── assets/demo-badge.svg     # 演示卡（示例数据，非真实个人数据）
 └── README.md
 ```
