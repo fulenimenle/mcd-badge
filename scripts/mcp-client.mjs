@@ -119,6 +119,29 @@ export async function callTool(token, session, name, args = {}) {
   return result;
 }
 
+/** 从文本中截取第一个完整的 JSON 对象（括号配对扫描，容忍尾部多余内容） */
+function sliceFirstJsonObject(text) {
+  const start = text.indexOf('{');
+  if (start === -1) throw new Error('文本中找不到 JSON: ' + text.slice(0, 200));
+  let depth = 0, inStr = false, esc = false;
+  for (let i = start; i < text.length; i++) {
+    const ch = text[i];
+    if (inStr) {
+      if (esc) esc = false;
+      else if (ch === '\\') esc = true;
+      else if (ch === '"') inStr = false;
+      continue;
+    }
+    if (ch === '"') inStr = true;
+    else if (ch === '{' || ch === '[') depth++;
+    else if (ch === '}' || ch === ']') {
+      depth--;
+      if (depth === 0) return text.slice(start, i + 1);
+    }
+  }
+  throw new Error('JSON 未闭合: ' + text.slice(start, start + 200));
+}
+
 /** 工具返回的 text content 中，提取 "# Original Response" 之后的原始 JSON 对象 */
 export function extractOriginalJson(text) {
   const t = String(text);
@@ -128,12 +151,8 @@ export function extractOriginalJson(text) {
     const idx = t.indexOf(m);
     if (idx !== -1) { jsonPart = t.slice(idx + m.length).trim(); break; }
   }
-  if (jsonPart === null) {
-    const i = t.indexOf('{"success"');
-    if (i === -1) throw new Error('返回文本中找不到 JSON: ' + t.slice(0, 200));
-    jsonPart = t.slice(i);
-  }
-  return JSON.parse(jsonPart);
+  if (jsonPart === null) jsonPart = t;
+  return JSON.parse(sliceFirstJsonObject(jsonPart));
 }
 
 /** 一次性取回文本形式的结果 */
