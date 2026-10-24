@@ -98,6 +98,7 @@ node scripts/mcd.mjs tools     # 列出麦当劳 MCP 全部工具
 mcd-badge/
 ├── SKILL.md                  # WorkBuddy 技能定义（技能本体）
 ├── MCP_INTEGRATION.md        # 麦当劳 MCP 接入说明（Server/Tool/调用流程/业务价值）
+├── mcp-config.example.json   # 脱敏 MCP 配置示例（环境变量占位符）
 ├── workbuddy.md              # WorkBuddy 开发对话记录（联动活动奖励凭证）
 ├── CONTEST_DECLARATION.md    # 参赛声明（官方原文）
 ├── scripts/
