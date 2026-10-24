@@ -121,7 +121,7 @@ mcd-badge/
 ## 参赛信息
 
 - 赛事：**麦当劳程序员创意开发大赛**（M-China × 腾讯 WorkBuddy，1024 程序员节）
-- 开发方式：全程使用**腾讯 WorkBuddy** 开发（对话记录见 `docs/开发对话记录.md`）
+- 开发方式：全程使用**腾讯 WorkBuddy** 开发（对话记录见 `workbuddy.md`）
 - 规则详见：GitHub 搜索 `McDonald's China (M-China)` → mcd-developer-innovation-challenge
 
 ## License
