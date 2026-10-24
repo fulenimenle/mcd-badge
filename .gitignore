@@ -1,0 +1,17 @@
+# 本地私密配置 —— 严禁提交
+.token.local
+*.local.json
+config.local.*
+
+# 真实个人数据 —— 严禁提交
+stats.json
+output/
+
+# 运行产物
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# WorkBuddy 项目内部记忆 —— 不公开
+.workbuddy/
