@@ -36,7 +36,7 @@
 以用户真实数据渲染工牌：职位「早八薅羊毛架构师」、技能栈「咖啡因驱动 / 薯条带宽优化 / 板烧内核 / 汉堡高吞吐 / 气泡缓存」、鉴定语「早八麦门人，原味板烧鸡腿麦满分重度依赖——吞吐稳定，气泡充足，唯一 bug 是 0 元单占比 50%，建议查一下是不是把优惠薅成了个人 KPI。」渲染结果经视觉核对通过。
 
 ### 7. 交付物整理
-WorkBuddy 编写：SKILL.md（WorkBuddy 技能定义，含执行流程与红线）、README.md（含演示图与快速开始）、CONTEST_DECLARATION.md（参赛声明：原创性/粉丝二创/只读承诺/隐私承诺）、docs/MCP接入说明.md、本开发对话记录，并初始化 git 仓库。
+WorkBuddy 编写：SKILL.md（WorkBuddy 技能定义，含执行流程与红线）、README.md（含演示图、目标用户与快速开始）、官方原文 CONTEST_DECLARATION.md、MCP_INTEGRATION.md（MCP 接入说明）、本开发对话记录（workbuddy.md），并初始化 git 仓库。
 
 ## 开发方式说明
 

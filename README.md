@@ -21,6 +21,12 @@
 
 卡片为纯 SVG 矢量渲染（零依赖），HTML 版点一下按钮就能存 2x 高清 PNG，直接发社交平台。
 
+## 适合谁
+
+- 麦门信徒：想拥有一张"官方盖章"级别的干饭身份凭证
+- 打工人 / 学生：程序员节朋友圈晒图素材，晒的是自己真实吃出来的 KPI
+- Skill 开发者：想学**零依赖接入 Streamable HTTP MCP** 的，本仓库 scripts/ 就是现成参考实现（无任何 SDK）
+
 ## 快速开始
 
 ### 方式一：在 WorkBuddy 中使用（推荐）
@@ -70,16 +76,16 @@ node scripts/mcd.mjs tools     # 列出麦当劳 MCP 全部工具
 ```
 mcd-badge/
 ├── SKILL.md                  # WorkBuddy 技能定义（技能本体）
+├── MCP_INTEGRATION.md        # 麦当劳 MCP 接入说明（Server/Tool/调用流程/业务价值）
+├── workbuddy.md              # WorkBuddy 开发对话记录（联动活动奖励凭证）
+├── CONTEST_DECLARATION.md    # 参赛声明（官方原文）
 ├── scripts/
 │   ├── mcp-client.mjs        # 麦当劳 MCP 公共客户端（Streamable HTTP，零依赖）
 │   ├── mcd.mjs               # CLI：ping / tools / call <tool> <args>
-│   ├── collect-stats.mjs     # 拉取订单+积分 → 计算职位/技能/KPI → stats.json
+│   ├── collect-stats.mjs     # 拉取订单+积分 → 计算职位/部门/技能/KPI → stats.json
 │   └── make-badge.mjs        # stats.json → 工牌 SVG + HTML（可存 PNG）
 ├── assets/demo-badge.svg     # 演示卡（示例数据，非真实个人数据）
-├── docs/
-│   ├── MCP接入说明.md         # 端点 / 协议 / 认证 / 工具清单
-│   └── 开发对话记录.md        # WorkBuddy 开发过程记录
-└── CONTEST_DECLARATION.md    # 参赛声明
+└── README.md
 ```
 
 ## 技术要点
